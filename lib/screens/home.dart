@@ -1,4 +1,6 @@
+import 'package:drinkify/screens/Components/drink_item.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -6,38 +8,14 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              ////Drink
-              Stack(
-                children: [
-                  Card(
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(24),
-                    ),
-                    color: Colors.white,
-                    child: Padding(
-                      padding: EdgeInsetsGeometry.symmetric(
-                        vertical: 70,
-                        horizontal: 4,
-                      ),
-                      child: Row(),
-                    ),
-                  ),
-                  Positioned(
-                    top: -10,
-                    left: 20,
-                    bottom: 50,
-                    child: Image.asset('assets/drinks/Chocolate.png'),
-                  ),
-                ],
-              ),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Gap(100),
+            ////Drink
+            DrinkItem(),
+          ],
         ),
       ),
     );
