@@ -15,7 +15,6 @@ class _SplashState extends State<Splash> {
     super.initState();
     
     Future.delayed(const Duration(seconds: 3), () {
-     
       if (mounted) {
         Navigator.pushReplacement(
           context,
@@ -36,9 +35,9 @@ class _SplashState extends State<Splash> {
               'assets/icons/logo.json',
               height: 300,
               width: 300,
-              errorBuilder: (context, error, stackTrace) {
-                return const Text("حدث خطأ أثناء تحميل الرسوم المتحركة.");
-              },
+              // errorBuilder: (context, error, stackTrace) {
+              //   return const Text("حدث خطأ أثناء تحميل الرسوم المتحركة.");
+              // },
             ),
           ],
         ),
