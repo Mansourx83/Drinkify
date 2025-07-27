@@ -1,4 +1,4 @@
-import 'package:drinkify/screens/Components/drink_item.dart';
+import 'package:drinkify/Components/drink_item.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

@@ -1,37 +1,33 @@
+import 'package:drinkify/models/drink_model.dart';
 import 'package:flutter/material.dart';
 
+
 class DrinkItem extends StatelessWidget {
-  const DrinkItem({
-    super.key,
-  });
+  final DrinkModel drink;  
+
+  const DrinkItem({super.key, required this.drink}); 
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ///Container
+        /// Container
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 30,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
           child: Card(
             elevation: 3,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadiusGeometry.circular(24),
+              borderRadius: BorderRadius.circular(24),
             ),
             color: Colors.white,
             child: Padding(
-              padding: EdgeInsetsGeometry.symmetric(
-                vertical: 70,
-                horizontal: 4,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 70, horizontal: 4),
               child: Row(),
             ),
           ),
         ),
-    
-        ///Image
+
+        /// Image
         Positioned(
           top: -10,
           left: 20,
@@ -53,16 +49,12 @@ class DrinkItem extends StatelessWidget {
                   ],
                 ),
               ),
-    
-              Image.asset(
-                'assets/drinks/Chocolate.png',
-                fit: BoxFit.contain,
-              ),
+              Image.asset(drink.imagePath, fit: BoxFit.contain),  // نعرض الصورة المرسلة
             ],
           ),
         ),
-    
-        ///Texts
+
+        /// Texts
         Positioned(
           top: 70,
           bottom: 0,
@@ -71,24 +63,28 @@ class DrinkItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'data',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
+                drink.title,  // نعرض العنوان المرسل
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               Text(
-                'descasdasdasdasd',
+                drink.description,  // نعرض الوصف المرسل
                 style: TextStyle(
                   color: Colors.grey,
                   fontWeight: FontWeight.normal,
                 ),
               ),
+              Text(
+                '\$${drink.price.toStringAsFixed(2)}',  // نعرض السعر المرسل
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ],
           ),
         ),
-    
-        ///Arrow
+
+        /// Arrow
         Positioned(
           top: 70,
           bottom: 0,

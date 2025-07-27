@@ -13,7 +13,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    
+
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
         Navigator.pushReplacement(
