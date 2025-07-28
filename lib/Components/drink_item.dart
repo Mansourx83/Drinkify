@@ -1,37 +1,38 @@
-import 'package:drinkify/models/drink_model.dart';
 import 'package:flutter/material.dart';
 
-
 class DrinkItem extends StatelessWidget {
-  final DrinkModel drink;  
-
-  const DrinkItem({super.key, required this.drink}); 
+  const DrinkItem({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.title,
+  });
+  final String image;
+  final String name;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        /// Container
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
           child: Card(
             elevation: 3,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(20),
             ),
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 70, horizontal: 4),
+              padding: const EdgeInsets.symmetric(vertical: 70, horizontal: 3),
               child: Row(),
             ),
           ),
         ),
-
-        /// Image
         Positioned(
-          top: -10,
+          top: -15,
           left: 20,
-          bottom: 50,
+          bottom: 43,
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
@@ -42,60 +43,49 @@ class DrinkItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.shade900,
                       blurRadius: 30,
                       spreadRadius: 2,
+                      color: Colors.black54,
                     ),
                   ],
                 ),
               ),
-              Image.asset(drink.imagePath, fit: BoxFit.contain),  // نعرض الصورة المرسلة
+              Image.asset(image, fit: BoxFit.contain),
             ],
           ),
         ),
-
-        /// Texts
         Positioned(
           top: 70,
           bottom: 0,
-          right: 100,
+          right: 70,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                drink.title,  // نعرض العنوان المرسل
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                name,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Text(
-                drink.description,  // نعرض الوصف المرسل
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              Text(
-                '\$${drink.price.toStringAsFixed(2)}',  // نعرض السعر المرسل
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
+                title,
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 11),
               ),
             ],
           ),
         ),
-
-        /// Arrow
         Positioned(
-          top: 70,
-          bottom: 0,
-          right: 40,
+          right: 50,
+          bottom: 50,
           child: Container(
             padding: EdgeInsets.all(3),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.black26),
+              border: Border.all(color: Colors.black),
             ),
-            child: Icon(Icons.arrow_right, color: Colors.black45),
+            child: Icon(
+              Icons.arrow_forward_sharp,
+              color: Colors.black54,
+              size: 15,
+            ),
           ),
         ),
       ],
