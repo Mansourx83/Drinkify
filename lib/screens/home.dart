@@ -10,6 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  ScrollController controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +21,27 @@ class _HomeState extends State<Home> {
             ////Drink
             Expanded(
               child: ListView.builder(
+                controller: controller,
                 itemCount: DrinkModel.drinks.length,
                 itemBuilder: (context, index) {
                   final drink = DrinkModel.drinks[index];
-                  return DrinkItem(
-                    image: drink.imagePath,
-                    name: drink.title,
-                    title: drink.description,
+                  return AnimatedBuilder(
+                    animation: controller,
+                    builder: (context, child) {
+                      double offset = 0;
+                      if (controller.hasClients) {
+                        offset = controller.offset / 120 - index;
+                      }
+                      offset = offset.clamp(0, 2);
+                      return Transform.scale(
+                        scale: 1 - (offset * 0.2),
+                        child: DrinkItem(
+                          image: drink.imagePath,
+                          name: drink.title,
+                          title: drink.description,
+                        ),
+                      );
+                    },
                   );
                 },
               ),

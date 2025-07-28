@@ -58,6 +58,7 @@ class DrinkItem extends StatelessWidget {
           top: 70,
           bottom: 0,
           right: 70,
+          left: 180,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

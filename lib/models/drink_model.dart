@@ -31,12 +31,7 @@ class DrinkModel {
       description: 'Refreshing strawberry drink.',
       price: 5.40,
     ),
-    DrinkModel(
-      imagePath: 'assets/drinks/Brownie Island.png',
-      title: 'Brownie Island',
-      description: 'Chocolatey drink with island flavors.',
-      price: 7.49,
-    ),
+
     DrinkModel(
       imagePath: 'assets/drinks/Peanut Butter.png',
       title: 'Peanut Butter',
@@ -56,10 +51,10 @@ class DrinkModel {
       price: 7.49,
     ),
     DrinkModel(
-      imagePath: 'assets/drinks/Brownie Island.png',
-      title: 'Brownie Island',
-      description: 'Chocolatey drink with island flavors.',
-      price: 7.49,
+      imagePath: 'assets/drinks/Banana.png',
+      title: 'Banana',
+      description: 'Creamy banana with fruity flavor.',
+      price: 5.99,
     ),
   ];
 }
