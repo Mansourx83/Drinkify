@@ -1,5 +1,6 @@
 import 'package:drinkify/Components/drink_item.dart';
 import 'package:drinkify/models/drink_model.dart';
+import 'package:drinkify/screens/details_drink.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -35,10 +36,18 @@ class _HomeState extends State<Home> {
                       offset = offset.clamp(0, 2);
                       return Transform.scale(
                         scale: 1 - (offset * 0.2),
-                        child: DrinkItem(
-                          image: drink.imagePath,
-                          name: drink.title,
-                          title: drink.description,
+                        child: GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailsDrink(),
+                            ),
+                          ),
+                          child: DrinkItem(
+                            image: drink.imagePath,
+                            name: drink.title,
+                            title: drink.description,
+                          ),
                         ),
                       );
                     },
