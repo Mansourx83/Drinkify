@@ -9,9 +9,13 @@ class DetailsDrink extends StatefulWidget {
 }
 
 class _DetailsDrinkState extends State<DetailsDrink> {
+  ///logic
+
+  int selectedInedx = 0;
+
+  ///animations
   final PageController _controller = PageController(viewportFraction: 0.50);
   double _currantPage = 0;
-
   @override
   void initState() {
     super.initState();
@@ -22,6 +26,7 @@ class _DetailsDrinkState extends State<DetailsDrink> {
     });
   }
 
+  ///model
   final drinks = DrinkModel.drinks;
 
   @override
@@ -112,6 +117,47 @@ class _DetailsDrinkState extends State<DetailsDrink> {
               );
             },
           ),
+
+          //list of item
+          Positioned(
+            bottom: 80,
+            right: 0,
+            left: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(4, (index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedInedx = index;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.black26),
+                        color: selectedInedx == index
+                            ? Colors.amber
+                            : Colors.white,
+                      ),
+
+                      child: Icon(
+                        Icons.shopping_cart,
+                        color: selectedInedx == index
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
+          ),
+
+          //switcher
         ],
       ),
     );
