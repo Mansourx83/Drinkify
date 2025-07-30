@@ -19,14 +19,14 @@ class _DrinkToggleState extends State<DrinkToggle> {
       ),
       child: Row(
         children: [
-          _buildToggleOption("Hot", !isIced),
-          _buildToggleOption("Iced", isIced),
+          _buildToggleOption("Hot", !isIced, Colors.red),
+          _buildToggleOption("Iced", isIced, Colors.lightBlueAccent),
         ],
       ),
     );
   }
 
-  Widget _buildToggleOption(String label, bool selected) {
+  Widget _buildToggleOption(String label, bool selected, Color color) {
     return Expanded(
       child: GestureDetector(
         onTap: () {
@@ -39,7 +39,9 @@ class _DrinkToggleState extends State<DrinkToggle> {
           curve: Curves.linear,
           padding: EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
-            color: selected ? Colors.white : Colors.grey[300],
+            color: selected
+                ? color
+                : Colors.white, 
             borderRadius: BorderRadius.circular(40),
           ),
           alignment: Alignment.center,
@@ -52,4 +54,3 @@ class _DrinkToggleState extends State<DrinkToggle> {
     );
   }
 }
-

@@ -1,3 +1,4 @@
+import 'package:drinkify/Components/qty.dart';
 import 'package:drinkify/Components/toggle_widget.dart';
 import 'package:drinkify/models/drink_model.dart';
 import 'package:flutter/material.dart';
@@ -11,24 +12,22 @@ class DetailsDrink extends StatefulWidget {
 }
 
 class _DetailsDrinkState extends State<DetailsDrink> {
-  ///logic
+  int selectedIndex = 0;
 
-  int selectedInedx = 0;
+  // PageController for animated page transitions
+  final PageController _controller = PageController(viewportFraction: 0.5);
+  double _currentPage = 0;
 
-  ///animations
-  final PageController _controller = PageController(viewportFraction: 0.50);
-  double _currantPage = 0;
   @override
   void initState() {
     super.initState();
     _controller.addListener(() {
       setState(() {
-        _currantPage = _controller.page ?? 1;
+        _currentPage = _controller.page ?? 1;
       });
     });
   }
 
-  ///model
   final drinks = DrinkModel.drinks;
 
   @override
@@ -36,7 +35,7 @@ class _DetailsDrinkState extends State<DetailsDrink> {
     return Scaffold(
       body: Stack(
         children: [
-          //Bar
+          // Top Bar
           Positioned(
             top: 80,
             left: 20,
@@ -48,68 +47,60 @@ class _DetailsDrinkState extends State<DetailsDrink> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      drinks[_currantPage.round()].title,
+                      drinks[_currentPage.round()].title,
                       style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      drinks[_currantPage.round()].description,
+                      drinks[_currentPage.round()].description,
                       style: TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                   ],
                 ),
                 Text(
-                  "€ ${drinks[_currantPage.round()].price.toString()}",
+                  "€ ${drinks[_currentPage.round()].price.toString()}",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
           ),
 
-          //Drink
+          // Drink Carousel
           PageView.builder(
             controller: _controller,
             scrollDirection: Axis.horizontal,
             itemCount: drinks.length,
             itemBuilder: (context, index) {
-              final scale = 1 - (_currantPage - index).abs() * 1;
-              final translate = (_currantPage - index).abs() * 400;
+              final scale =
+                  1 - (_currentPage - index).abs() * 0.5; // Adjust scale effect
+              final translate =
+                  (_currentPage - index).abs() *
+                  400; // Adjust translation effect
               return Transform.translate(
                 offset: Offset(translate, 0),
                 child: Transform.scale(
-                  scale: scale.clamp(0.5, 1),
+                  scale: scale.clamp(
+                    0.5,
+                    1,
+                  ), // Restrict scale between 0.5 and 1
                   child: Column(
                     children: [
                       Stack(
                         children: [
-                          ///Drink
+                          // Shadow Effect for Drink Image
+                          Positioned(
+                            bottom: 188,
+                            right: 0,
+                            left: 0,
+                            child: Image.asset("assets/drinks/Ellipse 2.png"),
+                          ),
+                          // Drink Image
                           Image.asset(
                             drinks[index].imagePath,
                             height: 800,
                             fit: BoxFit.contain,
-                          ),
-
-                          ///Shadow
-                          Positioned(
-                            bottom: 200,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              width: 50,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 60,
-                                    spreadRadius: 10,
-                                    color: Colors.black38,
-                                  ),
-                                ],
-                              ),
-                            ),
                           ),
                         ],
                       ),
@@ -120,23 +111,37 @@ class _DetailsDrinkState extends State<DetailsDrink> {
             },
           ),
 
-          //list of item
+          // Bottom Action Area
           Positioned(
-            bottom: 20,
+            bottom: 40,
             right: 0,
             left: 0,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  //list of icons
+                  // List of icons (Shopping Cart)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(4, (index) {
+                    children: List.generate(3, (index) {
+                      String label;
+                      double iconSize;
+
+                      if (index == 0) {
+                        label = "Small"; // Small
+                        iconSize = 17.0; // الحجم الصغير
+                      } else if (index == 1) {
+                        label = "Medium"; // Medium
+                        iconSize = 25.0; // الحجم المتوسط
+                      } else {
+                        label = "Large"; // Large
+                        iconSize = 35.0; // الحجم الكبير
+                      }
+
                       return GestureDetector(
                         onTap: () {
                           setState(() {
-                            selectedInedx = index;
+                            selectedIndex = index;
                           });
                         },
                         child: Container(
@@ -144,24 +149,47 @@ class _DetailsDrinkState extends State<DetailsDrink> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.black26),
-                            color: selectedInedx == index
+                            color: selectedIndex == index
                                 ? Colors.amber
                                 : Colors.white,
                           ),
-
-                          child: Icon(
-                            Icons.shopping_cart,
-                            color: selectedInedx == index
-                                ? Colors.white
-                                : Colors.black,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.coffee,
+                                size: iconSize,
+                                color: selectedIndex == index
+                                    ? Colors.white
+                                    : Colors.black,
+                              ),
+                              Text(
+                                label,
+                                style: TextStyle(
+                                  color: selectedIndex == index
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       );
                     }),
                   ),
-                  Gap(40),
-                  //switcher
-                  DrinkToggle(),
+
+                  Gap(20),
+                  // Quantity and Toggle Switch
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(child: DrinkToggle()),
+                      Gap(8),
+                      Expanded(child: QuantitySelector()),
+                    ],
+                  ),
                 ],
               ),
             ),
