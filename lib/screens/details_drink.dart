@@ -37,7 +37,7 @@ class _DetailsDrinkState extends State<DetailsDrink> {
         children: [
           // Top Bar
           Positioned(
-            top: 80,
+            top: 50,
             left: 20,
             right: 20,
             child: Row(
@@ -91,15 +91,18 @@ class _DetailsDrinkState extends State<DetailsDrink> {
                         children: [
                           // Shadow Effect for Drink Image
                           Positioned(
-                            bottom: 188,
+                            bottom: 160,
                             right: 0,
                             left: 0,
-                            child: Image.asset("assets/drinks/Ellipse 2.png"),
+                            child: Image.asset(
+                              "assets/drinks/Ellipse 2.png",
+                              fit: BoxFit.contain,
+                            ),
                           ),
                           // Drink Image
                           Image.asset(
                             drinks[index].imagePath,
-                            height: 800,
+                            height: 700,
                             fit: BoxFit.contain,
                           ),
                         ],

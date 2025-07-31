@@ -58,17 +58,17 @@ class DrinkItem extends StatelessWidget {
           top: 70,
           bottom: 0,
           right: 70,
-          left: 180,
+          left: 160,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 name,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
               ),
               Text(
                 title,
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 11),
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 10),
               ),
             ],
           ),
