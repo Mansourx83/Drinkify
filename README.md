@@ -24,3 +24,7 @@ This app was created **for learning purposes** to improve skills in:
   - Drink size selector (Small / Medium / Large).  
   - Quantity selector widget.  
 - 🎨 Clean UI with reusable components.  
+
+---
+
+> **Developed with ❤️ using Flutter.**
