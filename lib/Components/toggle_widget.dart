@@ -39,9 +39,7 @@ class _DrinkToggleState extends State<DrinkToggle> {
           curve: Curves.linear,
           padding: EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
-            color: selected
-                ? color
-                : Colors.white, 
+            color: selected ? color : Colors.white,
             borderRadius: BorderRadius.circular(40),
           ),
           alignment: Alignment.center,
