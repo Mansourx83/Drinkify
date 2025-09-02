@@ -1,16 +1,26 @@
-# drinkify
+# 🍹 Drinkify
 
-A new Flutter project.
+Drinkify is a **Flutter training project** built to practice and explore animations, UI design, and custom widgets.  
+It demonstrates how to implement **animated lists, scaling effects, page transitions, and interactive UI components** in Flutter.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🎯 Purpose
 
-A few resources to get you started if this is your first Flutter project:
+This app was created **for learning purposes** to improve skills in:
+- Flutter animations (scale, transform, page transitions).  
+- Custom widget development.  
+- Building interactive UI with state management.  
+- Practicing modern UI/UX design patterns.  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ✨ Features
+
+- 🚀 **Splash Screen** with a Lottie animation.  
+- 📜 **Home Screen** showing an animated drinks list with scaling on scroll.  
+- 📖 **Details Screen** with:
+  - Dynamic price & description display.  
+  - Drink size selector (Small / Medium / Large).  
+  - Quantity selector widget.  
+- 🎨 Clean UI with reusable components.  
